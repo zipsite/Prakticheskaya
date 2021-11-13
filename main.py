@@ -1,26 +1,94 @@
 from tkinter import *
 
+sign = 'null'
+
+def summ():
+    debug.configure(text="+")
+
+def minuss():
+    global sign
+    sign = "-"
+
+    debug.configure(text="-")
+def mnoge():
+    global sign
+    sign = "*"
+
+    debug.configure(text="*")
+def dell():
+    global sign
+    sign = "/"
+
+    debug.configure(text="/")
+def clear():
+    print (u"Клик!")
+
+    debug.configure(text="C")
+
+def result():
+
+    debug.configure(text="R")
+    
+
+
+
+
 root = Tk()
+root.title("Калькулятор")
 
-e = Entry(width=20)
-b = Button(text="Преобразовать")
-a = Button(root, text = "+")
-d = Button(root, text = "-")
-c = Button(root, text = "*")
-h = Button(root, text = "/")  
-l = Label(bg='black', fg='white', width=20)
+podpis1 = Label(root, text="Первое число")
+podpis2 = Label(root, text="Второе число")
+podpis3 = Label(root, text="Ответ")
 
-def strToSortlist(event):
-    s = e.get()
-    s = s.split()
-    s.sort()
-    l['text'] = ' '.join(s)
 
-b.bind('<Button-1>', strToSortlist)
+vvod1 = Entry(root, width=20)
+vvod2 = Entry(root, width=20)
+vvod3 =Entry(root, text="Ответ")
 
-a.pack()
-d.pack()
-e.pack()
-b.pack()
-l.pack()
+
+plus = Button(root, command=summ, text = "+")
+minus = Button(root, command=minuss, text = "-")
+umnog = Button(root, command=mnoge, text = "*")
+deleniye = Button(root, command=dell, text = "/") 
+
+clear = Button(root, command=clear, text = "очистить")
+
+result = Button(root, command=result, text = "результат")
+
+debug = Label(root,text = "bbb")
+
+
+
+
+
+
+
+
+
+
+
+
+podpis1.grid(row = 1, column = 1, columnspan = 2)
+vvod1.grid(row = 2, column = 1, columnspan = 2)
+
+podpis2.grid(row = 1, column = 3, columnspan = 2)
+vvod2.grid(row = 2, column = 3, columnspan = 2)
+
+podpis3.grid(row = 3, column = 1, columnspan = 4)
+vvod3.grid(row = 4, column = 1, columnspan = 4)
+
+plus.grid(row = 5, column = 1)
+minus.grid(row = 5, column = 2)
+umnog.grid(row = 5, column = 3)
+deleniye.grid(row = 5, column = 4)
+
+clear.grid(row = 6, column = 1, columnspan = 2)
+result.grid(row = 6, column = 3, columnspan = 2)
+
+debug.grid(row = 7, column = 1, columnspan = 4)
+
+
+
+
+
 root.mainloop()
