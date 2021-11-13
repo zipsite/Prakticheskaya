@@ -2,6 +2,8 @@ from tkinter import *
 
 sign = 'null'
 
+chislo = str(' ')
+
 def summ():
     debug.configure(text="+")
 
@@ -26,8 +28,10 @@ def clear():
     debug.configure(text="C")
 
 def result():
+    chislo = str (vvod1.get())
+    debug.configure(text=chislo)
+    
 
-    debug.configure(text="R")
     
 
 
@@ -43,7 +47,7 @@ podpis3 = Label(root, text="Ответ")
 
 vvod1 = Entry(root, width=20)
 vvod2 = Entry(root, width=20)
-vvod3 =Entry(root, text="Ответ")
+vvod3 =Entry(root,)
 
 
 plus = Button(root, command=summ, text = "+")
