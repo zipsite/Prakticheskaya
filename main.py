@@ -1,42 +1,50 @@
 from tkinter import *
+# Задание переменных (почему бы и нет)
+sign = 'null'       # хранит знак
+var1 = 0            # первое число
+var2 = 0            # второе число
+result = 0
+debug_mem = 'null'  # значение для отладки
 
-sign = 'null'
 
-chislo = str(' ')
-
-def summ():
-    debug.configure(text="+")
-
-def minuss():
+# функции кнопок
+def btn_cliced_plus():
+    global sign
+    sign = "+"
+def btn_cliced_minus():
     global sign
     sign = "-"
-
-    debug.configure(text="-")
-def mnoge():
+def btn_cliced_mnog():
     global sign
     sign = "*"
-
-    debug.configure(text="*")
-def dell():
+def btn_cliced_dell():
     global sign
     sign = "/"
+def btn_cliced_clear():
+    global sign, var1, var2
+    sign = 'null'
+    var1 = 0
+    var2 = 0
+def btn_cliced_result():
+    global sign, var1, var2
 
-    debug.configure(text="/")
-def clear():
-    print (u"Клик!")
+    var1 = vvod1.get()
+    var2 = vvod2.get()
 
-    debug.configure(text="C")
+    if sign == 'null':
+        result = "введи знак"
+    elif sign == "+":
+        result = var1 + var2
+    elif sign == "-":
+        result = var1 - var2
+    elif sign == "*":
+        result = var1 * var2
+    elif sign == "/":
+        result = var1 / var2
 
-def result():
-    chislo = str (vvod1.get())
-    debug.configure(text=chislo)
-    
+    vvod3.insert(1, result)
 
-    
-
-
-
-
+# Свойства кнопок
 root = Tk()
 root.title("Калькулятор")
 
@@ -50,28 +58,18 @@ vvod2 = Entry(root, width=20)
 vvod3 =Entry(root,)
 
 
-plus = Button(root, command=summ, text = "+")
-minus = Button(root, command=minuss, text = "-")
-umnog = Button(root, command=mnoge, text = "*")
-deleniye = Button(root, command=dell, text = "/") 
+plus = Button(root, command=btn_cliced_plus, text = "+")
+minus = Button(root, command=btn_cliced_minus, text = "-")
+mnog = Button(root, command=btn_cliced_mnog, text = "*")
+dell = Button(root, command=btn_cliced_dell, text = "/")
 
-clear = Button(root, command=clear, text = "очистить")
+clear = Button(root, command=btn_cliced_clear, text = "очистить")
 
-result = Button(root, command=result, text = "результат")
+result = Button(root, command=btn_cliced_result, text = "результат")
 
-debug = Label(root,text = "bbb")
+debug = Label(root,text = debug_mem)
 
-
-
-
-
-
-
-
-
-
-
-
+# Вёрстка интерфейса
 podpis1.grid(row = 1, column = 1, columnspan = 2)
 vvod1.grid(row = 2, column = 1, columnspan = 2)
 
@@ -83,16 +81,12 @@ vvod3.grid(row = 4, column = 1, columnspan = 4)
 
 plus.grid(row = 5, column = 1)
 minus.grid(row = 5, column = 2)
-umnog.grid(row = 5, column = 3)
-deleniye.grid(row = 5, column = 4)
+mnog.grid(row = 5, column = 3)
+dell.grid(row = 5, column = 4)
 
 clear.grid(row = 6, column = 1, columnspan = 2)
 result.grid(row = 6, column = 3, columnspan = 2)
 
 debug.grid(row = 7, column = 1, columnspan = 4)
-
-
-
-
 
 root.mainloop()
