@@ -1,11 +1,27 @@
 from tkinter import *
+from tkinter import messagebox
+
 # Задание переменных (почему бы и нет)
 sign = 'null'       # хранит знак
-var1 = 0            # первое число
-var2 = 0            # второе число
-result = 0
+var1 = int(0)            # первое число
+var2 = int(0)            # второе число
+result = int(0)
 debug_mem = 'null'  # значение для отладки
 
+# элементы интерфейса
+name_window_error = "Ошебакак"
+sign_error = "чел, ты Знак забыл..."
+dell_minus_error = "Эта абоба не так работаит, читай матет=матику!"
+empty_error = "А ты цыфры не забыл???"
+
+
+# функция проверки пустоты
+def empty(value):
+    try:
+        value = float(value)
+    except ValueError:
+        pass
+    return bool(value)
 
 # функции кнопок
 def btn_cliced_plus():
@@ -25,14 +41,22 @@ def btn_cliced_clear():
     sign = 'null'
     var1 = 0
     var2 = 0
+    vvod1.delete(0, END)
+    vvod2.delete(0, END)
+    vvod3.delete(0, END)
 def btn_cliced_result():
     global sign, var1, var2
 
-    var1 = vvod1.get()
-    var2 = vvod2.get()
+    vvod3.delete(0, END)
+
+    if vvod1.get() and vvod2.get():
+        var1 = int(vvod1.get())
+        var2 = int(vvod2.get())
+    else:
+        messagebox.showinfo(name_error, empty_error)
 
     if sign == 'null':
-        result = "введи знак"
+        messagebox.showinfo(name_error, sign_error)
     elif sign == "+":
         result = var1 + var2
     elif sign == "-":
@@ -40,9 +64,19 @@ def btn_cliced_result():
     elif sign == "*":
         result = var1 * var2
     elif sign == "/":
-        result = var1 / var2
+        if var2 != 0:
+            result = var1 / var2
+        elif var2 == 0:
+            messagebox.showinfo(name_error, dell_minus_error)
 
+    # Вывод результата
     vvod3.insert(1, result)
+
+    sign = 'null'
+    var1 = 0
+    var2 = 0
+    vvod1.delete(0, END)
+    vvod2.delete(0, END)
 
 # Свойства кнопок
 root = Tk()
