@@ -45,7 +45,7 @@ def btn_cliced_clear():
     vvod2.delete(0, END)
     vvod3.delete(0, END)
 def btn_cliced_result():
-    global sign, var1, var2
+    global sign, var1, var2, empty_error,  sign_error, dell_minus_error, name_window_error
 
     vvod3.delete(0, END)
 
@@ -53,10 +53,10 @@ def btn_cliced_result():
         var1 = int(vvod1.get())
         var2 = int(vvod2.get())
     else:
-        messagebox.showinfo(name_error, empty_error)
+        messagebox.showinfo(name_window_error, empty_error)
 
     if sign == 'null':
-        messagebox.showinfo(name_error, sign_error)
+        messagebox.showinfo(name_window_error, sign_error)
     elif sign == "+":
         result = var1 + var2
     elif sign == "-":
@@ -67,7 +67,7 @@ def btn_cliced_result():
         if var2 != 0:
             result = var1 / var2
         elif var2 == 0:
-            messagebox.showinfo(name_error, dell_minus_error)
+            messagebox.showinfo(name_window_error, dell_minus_error)
 
     # Вывод результата
     vvod3.insert(1, result)
