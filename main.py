@@ -2,26 +2,16 @@ from tkinter import *
 from tkinter import messagebox
 
 # Задание переменных (почему бы и нет)
-sign = 'null'       # хранит знак
-var1 = int(0)            # первое число
-var2 = int(0)            # второе число
-result = int(0)
-debug_mem = 'null'  # значение для отладки
+sign = 'null'           # хранит знак
+var1 = int(0)           # первое число
+var2 = int(0)           # второе число
+result = int(0)         # хранит знак
 
 # элементы интерфейса
 name_window_error = "Ошебакак"
 sign_error = "чел, ты Знак забыл..."
 dell_minus_error = "Эта абоба не так работаит, читай матет=матику!"
 empty_error = "А ты цыфры не забыл???"
-
-
-# функция проверки пустоты
-def empty(value):
-    try:
-        value = float(value)
-    except ValueError:
-        pass
-    return bool(value)
 
 # функции кнопок
 def btn_cliced_plus():
@@ -47,17 +37,20 @@ def btn_cliced_clear():
 def btn_cliced_result():
     global sign, var1, var2, empty_error,  sign_error, dell_minus_error, name_window_error
 
+    # Очистка ответа
     vvod3.delete(0, END)
 
-    if vvod1.get() and vvod2.get():
+    # Проверка чтобы поля ввода не были пустыми и чтобы был поставлен знак
+    if sign == 'null':
+        messagebox.showinfo(name_window_error, sign_error)
+    elif vvod1.get() and vvod2.get():
         var1 = int(vvod1.get())
         var2 = int(vvod2.get())
     else:
         messagebox.showinfo(name_window_error, empty_error)
 
-    if sign == 'null':
-        messagebox.showinfo(name_window_error, sign_error)
-    elif sign == "+":
+    # Основная логика калькулятора
+    if sign == "+":
         result = var1 + var2
     elif sign == "-":
         result = var1 - var2
@@ -72,6 +65,7 @@ def btn_cliced_result():
     # Вывод результата
     vvod3.insert(1, result)
 
+    # Обнуление переменных и очистка полей
     sign = 'null'
     var1 = 0
     var2 = 0
@@ -101,8 +95,6 @@ clear = Button(root, command=btn_cliced_clear, text = "очистить")
 
 result = Button(root, command=btn_cliced_result, text = "результат")
 
-debug = Label(root,text = debug_mem)
-
 # Вёрстка интерфейса
 podpis1.grid(row = 1, column = 1, columnspan = 2)
 vvod1.grid(row = 2, column = 1, columnspan = 2)
@@ -120,7 +112,5 @@ dell.grid(row = 5, column = 4)
 
 clear.grid(row = 6, column = 1, columnspan = 2)
 result.grid(row = 6, column = 3, columnspan = 2)
-
-debug.grid(row = 7, column = 1, columnspan = 4)
 
 root.mainloop()
