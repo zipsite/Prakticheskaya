@@ -83,17 +83,17 @@ podpis3 = Label(root, text="Ответ")
 
 vvod1 = Entry(root, width=20)
 vvod2 = Entry(root, width=20)
-vvod3 =Entry(root,)
+vvod3 = Entry(root, width=40)
 
 
-plus = Button(root, command=btn_cliced_plus, text = "+")
-minus = Button(root, command=btn_cliced_minus, text = "-")
-mnog = Button(root, command=btn_cliced_mnog, text = "*")
-dell = Button(root, command=btn_cliced_dell, text = "/")
+plus = Button(root, command=btn_cliced_plus, text = "+", width=10)
+minus = Button(root, command=btn_cliced_minus, text = "-", width=10)
+mnog = Button(root, command=btn_cliced_mnog, text = "*", width=10)
+dell = Button(root, command=btn_cliced_dell, text = "/", width=10)
 
-clear = Button(root, command=btn_cliced_clear, text = "очистить")
+clear = Button(root, command=btn_cliced_clear, text = "очистить", width=20)
 
-result = Button(root, command=btn_cliced_result, text = "результат")
+result = Button(root, command=btn_cliced_result, text = "результат", width=20)
 
 # Вёрстка интерфейса
 podpis1.grid(row = 1, column = 1, columnspan = 2)
