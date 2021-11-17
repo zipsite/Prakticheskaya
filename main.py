@@ -1,42 +1,26 @@
 from tkinter import *
 
-def openfile():
-    global filename, textpad
-
-    textpad.delete(1.0, END)
-
-    name = str(filename.get())
-
-    file = open(name, "r")
-
-    bufer = file.read()
-
-    textpad.insert(1.0, bufer)
-
-    file.close()
-
-def savefile():
-    global filename, textpad
-
-    name = str(filename.get())
-
-    file = open(name, "w")
-
-    bufer = textpad.get(1.0, END)
-
-    file.write(bufer)
-    file.close()
+def clic():
+    if rlink.get() == 0:
+        info['text'] = "Реальный абобус"
+    elif rlink.get() == 1:
+        info['text'] = "Просто Петя"
+    elif rlink.get() == 2:
+        info['text'] = "Реальная беброчка"
 
 root = Tk()
 root.title("aboba")
 
-filename = Entry(root)
-filename.grid(row=1,column=1)
-openbtn = Button(root, text = "Открыть", command=openfile)
-openbtn.grid(row=1, column=2)
-savebtn = Button(root, text = "Сохранить", command=savefile)
-savebtn.grid(row=1, column=3)
-textpad = Text(root)
-textpad.grid(row=2, columnspan=3, column=1)
+rlink = IntVar()
+rlink.set(0)
+
+r1 = Radiobutton(text='Вася', variable=rlink, value=0, indicatoron=0, width=10, height=3, command=clic)
+r1.grid(row=1,column=1)
+r2 = Radiobutton(text='Петя', variable=rlink, value=1, indicatoron=0, width=10, height=3, command=clic)
+r2.grid(row=2,column=1)
+r3 = Radiobutton(text='Маша', variable=rlink, value=2, indicatoron=0, width=10, height=3, command=clic)
+r3.grid(row=3,column=1)
+info = Label(width=30, height=3)
+info.grid(row=1,column=2)
 
 root.mainloop()
