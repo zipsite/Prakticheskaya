@@ -2,8 +2,8 @@ from tkinter import *
 
 class ColBlock:
     def __init__(self, master, code, color):
-        self.b = Button(master, text=color, activebackground=code ,bg=code, width=20, command=self.shcolor)
-        self.b.pack()
+        self.b = Button(master, activebackground=code ,bg=code, width=3, command=self.shcolor)
+        self.b.pack(side = LEFT, padx=1, pady=1)
         self.code = code
         self.color = color
     def shcolor(self):
@@ -12,13 +12,13 @@ class ColBlock:
         pole.insert(0, self.code)
 
 root = Tk()
-root.geometry("150x225+100+100")
-root.resizable(width=False, height=False)
+#root.geometry("150x225+100+100")
+#root.resizable(width=False, height=False)
 
 vid = Label(root, width=20)
-vid.pack()
+vid.pack(padx=1, pady=3)
 pole = Entry(root, width=20, justify='center')
-pole.pack()
+pole.pack(padx=1, pady=3)
 
 
 red = ColBlock(root, '#ff0000', "красный")
