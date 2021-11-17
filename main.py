@@ -1,32 +1,48 @@
 from tkinter import *
 
-class ColBlock:
-    def __init__(self, master, code, color):
-        self.b = Button(master, activebackground=code ,bg=code, width=3, command=self.shcolor)
-        self.b.pack(side = LEFT, padx=1, pady=1)
-        self.code = code
-        self.color = color
-    def shcolor(self):
-        vid["text"] = self.color
-        pole.delete(0, END)
-        pole.insert(0, self.code)
+def openfile():
+    global filename, textpad
+
+    textpad.delete(1.0, END)
+
+    name = str(filename.get())
+
+    file = open(name, "r")
+
+    bufer = file.read()
+
+    textpad.insert(1.0, bufer)
+
+    file.close()
+
+def savefile():
+    global filename, textpad
+
+    name = str(filename.get())
+
+    file = open(name, "w")
+
+    bufer = textpad.get(1.0, END)
+
+    file.write(bufer)
+    file.close()
+
+
+
 
 root = Tk()
-#root.geometry("150x225+100+100")
-#root.resizable(width=False, height=False)
+root.title("aboba")
 
-vid = Label(root, width=20)
-vid.pack(padx=1, pady=3)
-pole = Entry(root, width=20, justify='center')
-pole.pack(padx=1, pady=3)
+filename = Entry(root)
+filename.pack(side=LEFT)
+openbtn = Button(root, text = "Открыть", command=openfile)
+openbtn.pack(side=LEFT)
+savebtn = Button(root, text = "Сохранить", command=savefile)
+savebtn.pack(side=LEFT)
+textpad = Text(root)
+textpad.pack(side=BOTTOM)
 
 
-red = ColBlock(root, '#ff0000', "красный")
-orange = ColBlock(root, '#ff7d00', "оранжевый")
-yelloy = ColBlock(root, '#ffff00', "жёлтый")
-green = ColBlock(root, '#00ff00', "зелёный")
-blue = ColBlock(root, '#007dff', "голубой")
-dblue = ColBlock(root, '#0000ff', "синий")
-violet = ColBlock(root, '#7d00ff', "фиолетовый")
+
 
 root.mainloop()
