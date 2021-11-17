@@ -12,7 +12,7 @@ root = Tk()
 root.title("aboba")
 
 rlink = IntVar()
-rlink.set(0)
+rlink.set(3)
 
 r1 = Radiobutton(text='Вася', variable=rlink, value=0, indicatoron=0, width=10, height=3, command=clic)
 r1.grid(row=1,column=1)
