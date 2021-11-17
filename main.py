@@ -27,22 +27,16 @@ def savefile():
     file.write(bufer)
     file.close()
 
-
-
-
 root = Tk()
 root.title("aboba")
 
 filename = Entry(root)
-filename.pack(side=LEFT)
+filename.grid(row=1,column=1)
 openbtn = Button(root, text = "Открыть", command=openfile)
-openbtn.pack(side=LEFT)
+openbtn.grid(row=1, column=2)
 savebtn = Button(root, text = "Сохранить", command=savefile)
-savebtn.pack(side=LEFT)
+savebtn.grid(row=1, column=3)
 textpad = Text(root)
-textpad.pack(side=BOTTOM)
-
-
-
+textpad.grid(row=2, columnspan=3, column=1)
 
 root.mainloop()
