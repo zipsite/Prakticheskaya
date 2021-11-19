@@ -1,42 +1,57 @@
 from tkinter import *
 
+# Функции открытия и сохранения файла
 def openfile():
     global filename, textpad
-
     textpad.delete(1.0, END)
-
     name = str(filename.get())
-
-    file = open(name, "r")
-
+    file = open(name, "r", encoding='UTF-8')
     bufer = file.read()
-
     textpad.insert(1.0, bufer)
-
     file.close()
 
 def savefile():
     global filename, textpad
-
     name = str(filename.get())
-
-    file = open(name, "w")
-
+    file = open(name, "w", encoding='UTF-8')
     bufer = textpad.get(1.0, END)
-
     file.write(bufer)
     file.close()
 
+# Главное окно
 root = Tk()
-root.title("aboba")
+root.title("Блохнот")
 
-filename = Entry(root)
-filename.grid(row=1,column=1)
-openbtn = Button(root, text = "Открыть", command=openfile)
-openbtn.grid(row=1, column=2)
-savebtn = Button(root, text = "Сохранить", command=savefile)
-savebtn.grid(row=1, column=3)
-textpad = Text(root)
-textpad.grid(row=2, columnspan=3, column=1)
+# Фрейм для кнопок и поля ввода имени файла
+topbtn = Frame(root)
+topbtn.pack(fill=X, expand=True)
+
+# Конфиги виджетов
+filename = Entry(topbtn)
+openbtn = Button(topbtn, width = 15, text = "Открыть", command=openfile)
+savebtn = Button(topbtn, width = 15, text = "Сохранить", command=savefile)
+
+# Расположение виджетов
+filename.pack(side = LEFT, fill=X, expand=True, padx=1, pady=1)
+openbtn.pack(side = LEFT, padx=1, pady=1)
+savebtn.pack(side = LEFT, padx=1, pady=1)
+
+# Фрейм текстового поля
+textpad = Frame(root)
+textpad.pack()
+
+# Конфиги текстового поля и скроллбаров
+text = Text(textpad, width = 50, height = 20, wrap=NONE)
+scroll = Scrollbar(textpad, command=text.yview)
+scroll2 = Scrollbar(orient=HORIZONTAL, command=text.xview)
+
+# Расположение текстового поля и скролл баров
+text.pack(side=LEFT)
+scroll.pack(side=LEFT, fill = Y)
+scroll2.pack(side=BOTTOM, fill=X)
+
+# Подключение скролл баров к текстовому полю
+text.config(yscrollcommand=scroll.set)
+text.config(xscrollcommand=scroll2.set)
 
 root.mainloop()
