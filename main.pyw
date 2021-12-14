@@ -12,6 +12,8 @@ def add():
         elif radata.get() == 1:
             ova = holst.create_oval(hx1, hy1, hx2, hy2, fill='white', outline='black')
 
+        winSadd.destroy()
+
     winSadd = Toplevel()
     winSadd.title('Фигура')
     
@@ -37,12 +39,12 @@ def add():
     radata = IntVar()
     radata.set(0)
     rect = Radiobutton(cord, text = "Прямоугольник", variable = radata, value = 0, width = 15)
-    rect.grid(row=3, column=1, columnspan=4)
+    rect.grid(row=3, column=1, columnspan=4, sticky=W)
     oval = Radiobutton(cord, text = "Овал", variable = radata, value = 1, width = 15)
-    oval.grid(row=4, column=1, columnspan=4)
+    oval.grid(row=4, column=1, columnspan=4, sticky=W)
 
     entbtn = Button(cord, text="Применить", command=draw)
-    entbtn.grid(row=5, column=1, columnspan=4)
+    entbtn.grid(row=5, column=1, columnspan=4, sticky=W+E)
 
 root = Tk()
 root.title("paint?")
