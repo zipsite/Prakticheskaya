@@ -1,26 +1,42 @@
 from tkinter import *
 
-def clic():
-    if rlink.get() == 0:
-        info['text'] = "Реальный абобус"
-    elif rlink.get() == 1:
-        info['text'] = "Просто Петя"
-    elif rlink.get() == 2:
-        info['text'] = "Реальная беброчка"
+def righttran():
+    select = list(lbox1.curselection())
+    select.reverse()
+    for i in select:
+        lbox2.insert(END, lbox1.get(i))
+        lbox1.delete(i)
+
+def lefttran():
+    select = list(lbox2.curselection())
+    select.reverse()
+    for i in select:
+        lbox1.insert(END, lbox2.get(i))
+        lbox2.delete(i)
 
 root = Tk()
-root.title("aboba")
 
-rlink = IntVar()
-rlink.set(3)
+lbox1 = Listbox(selectmode=EXTENDED)
+lbox1.pack(side=LEFT)
 
-r1 = Radiobutton(text='Вася', variable=rlink, value=0, indicatoron=0, width=10, height=3, command=clic)
-r1.grid(row=1,column=1)
-r2 = Radiobutton(text='Петя', variable=rlink, value=1, indicatoron=0, width=10, height=3, command=clic)
-r2.grid(row=2,column=1)
-r3 = Radiobutton(text='Маша', variable=rlink, value=2, indicatoron=0, width=10, height=3, command=clic)
-r3.grid(row=3,column=1)
-info = Label(width=30, height=3)
-info.grid(row=1,column=2)
+for i in ('apple', 'bananas', 'carrot', 'bread', 'butter', 'meat', 'potato', 'pineapple', 'tomato', 'milk'):
+    lbox1.insert(END, i)
+
+
+###
+btnfr = Frame()
+btnfr.pack(side=LEFT, padx=10)
+
+rightbtn = Button(btnfr, text=">>>", command=righttran)
+rightbtn.pack(fill=X)
+
+leftbtn = Button(btnfr, text="<<<", command=lefttran)
+leftbtn.pack(fill=X)
+
+###
+lbox2 = Listbox(selectmode=EXTENDED)
+lbox2.pack(side=LEFT)
 
 root.mainloop()
+
+
