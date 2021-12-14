@@ -1,27 +1,39 @@
 from tkinter import *
-root = Tk()
-c = Canvas(width=300,height=300,bg='white')
-c.radius = 20
+
 def click(event):
-    c.x = event.x + c.radius
-    c.y = event.y + c.radius
-    c.radius = 20
-    motion()
-def motion():
-        x = c.coords(c.ball)[2] 
-        y = c.coords(c.ball)[3]
-        if c.x == x and c.y == y:
-            return
-        if c.x < x:
-            c.move(c.ball,-1, 0)
-        if c.x > x:
-            c.move(c.ball, 1, 0)
-        if c.y < y:
-            c.move(c.ball, 0,-1)
-        if c.y > y:
-            c.move(c.ball, 0, 1)
-        root.after(10, motion)
-c.ball = c.create_oval(0, 100, c.radius*2, 100+c.radius*2, fill='black')
-c.bind('<Button-1>',click)
-c.pack()
+    holst.x = event.x + holst.radius
+    holst.y = event.y + holst.radius
+    holst.radius = 30
+    anim()
+
+
+def anim():
+    x = holst.coords(holst.ball)[2] 
+    y = holst.coords(holst.ball)[3]
+
+    if holst.x == x and holst.y == y:
+        return
+    elif holst.x < x:
+        holst.move(holst.ball,-1, 0)
+    elif holst.x > x:
+        holst.move(holst.ball, 1, 0)
+    elif holst.y < y:
+        holst.move(holst.ball, 0,-1)
+    elif holst.y > y:
+        holst.move(holst.ball, 0, 1)
+
+    root.after(5, anim)
+
+root = Tk()
+root.title("circle")
+root.geometry('300x300')
+root.resizable(False, False)
+
+holst = Canvas(width=300, height=300, bg='white')
+holst.radius = 30
+
+holst.ball = holst.create_oval(0, 150, holst.radius*2, 150+holst.radius*2, fill='lightblue', outline='lightblue')
+holst.bind('<Button-1>', click)
+holst.pack()
+
 root.mainloop()
