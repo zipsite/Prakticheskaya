@@ -23,25 +23,24 @@ def savefile():
     file.close()
 
 def clear():
-    textpad.delete(1.0, END)
+    text.delete(1.0, END)
+
+
+def spawn(event):
+    popmenu.post(event.x_root, event.y_root)
 
 # Главное окно
 root = Tk()
 root.title("Блохнот")
 
-# Фрейм для кнопок и поля ввода имени файла
-topbtn = Frame(root)
-topbtn.pack(fill=X, expand=True)
+mainmenu = Menu(root)
+root.config(menu=mainmenu)
 
-# Конфиги виджетов
-openbtn = Button(topbtn, width = 15, text = "Открыть", command=openfile)
-savebtn = Button(topbtn, width = 15, text = "Сохранить", command=savefile)
-clearbtn = Button(topbtn, width = 15, text = "Очистить", command=clear)
+mainmenu.add_command(label="Открыть", command=openfile)
+mainmenu.add_command(label="Сохранить", command=savefile)
 
-# Расположение виджетов
-openbtn.pack(side = LEFT, padx=1, pady=1)
-savebtn.pack(side = LEFT, padx=1, pady=1)
-clearbtn.pack(side = LEFT, padx=1, pady=1)
+popmenu = Menu(tearoff=0)
+popmenu.add_command(label='Очистить', command=clear)
 
 # Фрейм текстового поля
 textpad = Frame(root)
@@ -52,6 +51,8 @@ text = Text(textpad, width = 50, height = 20, wrap=NONE)
 scroll = Scrollbar(textpad, command=text.yview)
 scroll2 = Scrollbar(orient=HORIZONTAL, command=text.xview)
 
+
+text.bind('<Button-3>', spawn)
 # Расположение текстового поля и скролл баров
 text.pack(side=LEFT)
 scroll.pack(side=LEFT, fill = Y)
