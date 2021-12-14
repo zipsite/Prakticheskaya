@@ -1,5 +1,6 @@
 from tkinter import *
 
+# Создание класса для кнопок
 class ColBlock:
     def __init__(self, master, code, color):
         self.b = Button(master, text=color, activebackground=code ,bg=code, width=20, command=self.shcolor)
@@ -11,16 +12,18 @@ class ColBlock:
         pole.delete(0, END)
         pole.insert(0, self.code)
 
+# Создание главного окна
 root = Tk()
-root.geometry("150x225+100+100")
+root.geometry("150x225")
 root.resizable(width=False, height=False)
 
+# Создание лейбла и поля ввода
 vid = Label(root, width=20)
 vid.pack()
 pole = Entry(root, width=20, justify='center')
 pole.pack()
 
-
+# Создание кнопок
 red = ColBlock(root, '#ff0000', "красный")
 orange = ColBlock(root, '#ff7d00', "оранжевый")
 yelloy = ColBlock(root, '#ffff00', "жёлтый")
