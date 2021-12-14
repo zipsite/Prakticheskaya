@@ -12,8 +12,6 @@ class ColBlock:
         pole.insert(0, self.code)
 
 root = Tk()
-#root.geometry("150x225+100+100")
-#root.resizable(width=False, height=False)
 
 vid = Label(root, width=20)
 vid.pack(padx=1, pady=3)
