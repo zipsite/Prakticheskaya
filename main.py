@@ -2,19 +2,20 @@ from tkinter import *
 
 # Функции открытия и сохранения файла
 def openfile():
-    global filename, textpad
-    textpad.delete(1.0, END)
+    global filename
+    
     name = str(filename.get())
     file = open(name, "r", encoding='UTF-8')
     bufer = file.read()
-    textpad.insert(1.0, bufer)
+    text.delete(1.0, END)
+    text.insert(1.0, bufer)
     file.close()
 
 def savefile():
-    global filename, textpad
+    global filename
     name = str(filename.get())
     file = open(name, "w", encoding='UTF-8')
-    bufer = textpad.get(1.0, END)
+    bufer = text.get(1.0, END)
     file.write(bufer)
     file.close()
 
