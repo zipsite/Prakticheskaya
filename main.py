@@ -8,9 +8,9 @@ def add():
         hy2 = int(y2.get(1.0, 'end-1c'))
 
         if radata.get() == 0:
-            rec = holst.create_rectangle(hx1, hy1, hx2, hy2, fill='white', outline='black')
+            holst.create_rectangle(hx1, hy1, hx2, hy2, fill='white', outline='black')
         elif radata.get() == 1:
-            ova = holst.create_oval(hx1, hy1, hx2, hy2, fill='white', outline='black')
+            holst.create_oval(hx1, hy1, hx2, hy2, fill='white', outline='black')
 
         winSadd.destroy()
 
@@ -20,6 +20,7 @@ def add():
     cord = Frame(winSadd)
     cord.place(relx=0.5, rely=0.5, anchor=CENTER)
 
+    # Поля ввода и подписи    
     Label(cord, text='x1').grid(row=1, column=1)
     x1 = Text(cord, width = '5', height = '1', bg = 'white')
     x1.grid(row=1, column=2)
@@ -36,11 +37,12 @@ def add():
     y2 = Text(cord, width = '5', height = '1', bg = 'white')
     y2.grid(row=2, column=4)
 
+    # Радиокнопки
     radata = IntVar()
     radata.set(0)
-    rect = Radiobutton(cord, text = "Прямоугольник", variable = radata, value = 0, width = 15)
+    rect = Radiobutton(cord, variable = radata, value = 0, text = "Прямоугольник")
     rect.grid(row=3, column=1, columnspan=4, sticky=W)
-    oval = Radiobutton(cord, text = "Овал", variable = radata, value = 1, width = 15)
+    oval = Radiobutton(cord, variable = radata, value = 1, text = "Овал")
     oval.grid(row=4, column=1, columnspan=4, sticky=W)
 
     entbtn = Button(cord, text="Применить", command=draw)
