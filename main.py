@@ -1,5 +1,6 @@
 from tkinter import *
 
+
 # Создание класса для кнопок
 class ColBlock:
     def __init__(self, master, code, color):
