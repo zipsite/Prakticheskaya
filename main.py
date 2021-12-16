@@ -3,7 +3,6 @@ from tkinter import *
 # Функции открытия и сохранения файла
 def openfile():
     global filename
-    
     name = str(filename.get())
     file = open(name, "r", encoding='UTF-8')
     bufer = file.read()
