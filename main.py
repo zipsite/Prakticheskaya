@@ -4,8 +4,7 @@ from tkinter.filedialog import *
 
 # Функции открытия и сохранения файла
 def openfile():
-    global textpad
-    filename = askopenfilename()
+    filename = askopenfilename(filetypes=(("TXT files", "*.txt"), ("HTML files", "*.html;*.htm"), ("All files", "*.*")))
     name = str(filename)
     file = open(name, "r", encoding='UTF-8')
     bufer = file.read()
@@ -14,8 +13,7 @@ def openfile():
     file.close()
 
 def savefile():
-    global text
-    filename = asksaveasfilename()
+    filename = asksaveasfilename(filetypes=(("TXT files", "*.txt"), ("HTML files", "*.html;*.htm"), ("All files", "*.*")))
     name = str(filename)
     file = open(name, "w", encoding='UTF-8')
     bufer = text.get(1.0, END)
