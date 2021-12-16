@@ -18,7 +18,6 @@ img = PhotoImage(file='smile.png')
 popbtn = Label(root, image=img)
 popbtn.place(x=75, y=75, width=50, height=50)
 
-
 root.bind("<Button-1>", fart)
 
 root.mainloop()
