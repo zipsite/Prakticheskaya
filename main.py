@@ -2,8 +2,8 @@ from tkinter import *
 
 # Изменяет размер окна
 def editSize(event):
-    pole['width'] = vvod1.get(1.0, END)
-    pole['height'] = vvod2.get(1.0, END)
+    pole['width'] = int(vvod1.get(1.0, END))
+    pole['height'] = int(vvod2.get(1.0, END))
 
 # Меняет текстовое поле на белое при фокусе на него
 def focIn(event):
